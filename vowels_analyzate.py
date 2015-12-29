@@ -3,7 +3,7 @@ from pylab import *
 import numpy
 import sys
 import argparse
-from dist import dist
+import dist
 
 CHUNK = 2 ** 10
 RATE = 44100
@@ -16,7 +16,7 @@ def chunk_cut(sound_array):
         s1 = numpy.fft.fft(a1)
         s2 = numpy.fft.fft(a2)
 
-        print "%s\t" % dist(s1, s2)
+        print "%s\t" % dist.dist(s1, s2)
 
 def get_channels(file_name):
 	RATE, sound_array = wavfile.read(file_name)
