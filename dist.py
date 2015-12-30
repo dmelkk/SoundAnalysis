@@ -9,13 +9,17 @@ def dist(l, r):
 			return b
 		return a
 	def euclid(a, b):
-		return abs((a - b + 0.0) / CHUNK) + abs(abs(l[a]) - abs(r[b]))
+		return abs((a - b + 0.0) / CHUNK) + abs(l[a] - r[b])
+
+	l = abs(l)
+	r = abs(r)
+
 	for i in range(CHUNK):
 		mindist = euclid(i, i)
-		for j in range(int(nmin(i, abs(l[i] - r[i])))):
+		for j in range(nmin(i, int( CHUNK * (abs(l[i] - r[i]))))):
 			if (mindist > euclid(i, i - j)):
 				mindist = euclid(i, i - j)
-		for j in range(int(nmin(CHUNK - i - 1, abs(l[i] - r[i])))):
+		for j in range(nmin(CHUNK - i - 1, int(CHUNK * (abs(l[i] - r[i]))))):
 			if (mindist > euclid(i, i + j)):
 				mindist = euclid(i, i + j)
 		d += mindist
