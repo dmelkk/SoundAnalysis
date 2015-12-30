@@ -24,6 +24,6 @@ def dist(l, r):
 				mindist = euclid(i, i + j)
 		d += mindist
 		maxd += abs(l[i])
-	if maxd = 0:
+	if maxd == 0:
 		return 0
 	return d / maxd

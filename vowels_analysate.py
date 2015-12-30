@@ -6,7 +6,7 @@ import argparse
 import dist
 
 file_name = "test.wav"
-CHUNK = 2 ** 10
+CHUNK = 2 ** 8
 RATE = 44100
 
 def numOfVowels(sound_array):
@@ -18,7 +18,7 @@ def numOfVowels(sound_array):
         s1 = numpy.fft.fft(a1)
         s2 = numpy.fft.fft(a2)
         d1 = dist.dist(a1, a2)
-        if (i != 0) & (d < 0.1) & (d1 > 1):
+        if (i != 0) & (d < 0.1) & (d1 > 0.1):
             res += 1
         d = d1
         print d
