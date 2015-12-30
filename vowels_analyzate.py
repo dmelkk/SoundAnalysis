@@ -5,6 +5,7 @@ import sys
 import argparse
 import dist
 
+file_name = "test.wav"
 CHUNK = 2 ** 10
 RATE = 44100
 
@@ -25,8 +26,10 @@ def get_channels(file_name):
 	return channel1, channel2
 
 def main():
-    ch1, ch2 = get_channels("test.wav")
+    ch1, ch2 = get_channels(file_name)
     chunk_cut(ch1)
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        file_name = sys.argv[1]
     main()
