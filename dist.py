@@ -25,5 +25,5 @@ def dist(l, r):
 		d += mindist
 		maxd += abs(l[i])
 	if maxd == 0:
-		return 0
+		return 1
 	return d / maxd
