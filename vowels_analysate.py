@@ -10,18 +10,26 @@ CHUNK = 2 ** 8
 RATE = 44100
 
 def numOfVowels(sound_array):
-    res, d = 0, 0
-    for i in numpy.arange(0, len(sound_array)-2*CHUNK, 2*CHUNK):
-        a1 = sound_array[i: i + CHUNK]
-        a2 = sound_array[i+CHUNK: i + 2*CHUNK]
-
-        s1 = numpy.fft.fft(a1)
+    res, d = 0, 1
+    start = 0
+    def finished(t):
+        finish = t * 1.0 / (CHUNK * RATE)
+        print str(start) + 's to ' + str(finish) + 's'
+    a1 = np.zeros(CHUNK)
+    s1 = numpy.fft.fft(a1)
+    for i in numpy.arange(0, len(sound_array) - CHUNK, CHUNK):
+        a2 = sound_array[i: i + CHUNK]
         s2 = numpy.fft.fft(a2)
         d1 = dist.dist(a1, a2)
+        a1 = a2
+        s1 = s2
         if (i != 0) & (d < 0.1) & (d1 > 0.1):
+            finished(i)
             res += 1
+        if (d > 0.1) & (d1 < 0.1):
+            start = i * 1.0 / (CHUNK * RATE)
         d = d1
-        print d
+
     return res
 
 def get_channels(file_name):
