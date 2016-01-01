@@ -13,7 +13,7 @@ def numOfVowels(sound_array):
     res, d = 0, 1
     start = 0
     def finished(t):
-        finish = t * 1.0 / (CHUNK * RATE)
+        finish = t * 1.0 / RATE
         print str(start) + 's to ' + str(finish) + 's'
     a1 = np.zeros(CHUNK)
     s1 = numpy.fft.fft(a1)
