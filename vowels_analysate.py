@@ -27,7 +27,7 @@ def numOfVowels(sound_array):
             finished(i)
             res += 1
         if (d > 0.1) & (d1 < 0.1):
-            start = i * 1.0 / (CHUNK * RATE)
+            start = i * 1.0 / RATE
         d = d1
 
     return res
