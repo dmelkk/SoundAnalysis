@@ -8,9 +8,11 @@ import dist
 file_name = "test.wav"
 CHUNK = 2 ** 8
 RATE = 44100
+eps = 0.2
 
 def numOfVowels(sound_array):
     res, d = 0, 1
+    dmax = d
     start = 0
     def finished(t):
         finish = t * 1.0 / RATE
@@ -23,13 +25,15 @@ def numOfVowels(sound_array):
         d1 = dist.dist(a1, a2)
         a1 = a2
         s1 = s2
-        if (i != 0) & (d < 0.1) & (d1 > 0.1):
+        if (i != 0) & (d < eps) & (d1 > eps):
             finished(i)
             res += 1
-        if (d > 0.1) & (d1 < 0.1):
-            start = i * 1.0 / RATE
+        if (d > eps) & (d1 < eps):
+            start = i * eps / RATE
         d = d1
-
+        if d > dmax and d < 1 :
+            dmax = d
+    print dmax * 1.05
     return res
 
 def get_channels(file_name):
