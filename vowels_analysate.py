@@ -6,7 +6,7 @@ import argparse
 import dist
 
 file_name = "test.wav"
-CHUNK = 2 ** 8
+CHUNK = 2 ** 9
 RATE = 44100
 eps = 0.2
 
@@ -29,7 +29,7 @@ def numOfVowels(sound_array):
             finished(i)
             res += 1
         if (d > eps) & (d1 < eps):
-            start = i * eps / RATE
+            start = i * 1.0 / RATE
         d = d1
         if d > dmax and d < 1 :
             dmax = d
